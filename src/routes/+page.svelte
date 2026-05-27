@@ -14,6 +14,7 @@
   let logoFailed = $state(false);
   let fileInput = $state(null);
 
+  // Загрузка файла
   function handleFile(file) {
     if (!file) return;
     if (!file.type.startsWith('video/')) {
@@ -34,6 +35,7 @@
     fileInput?.click();
   }
 
+  // Drag and Drop
   function onDrop(e) {
     e.preventDefault();
     isDragging = false;
@@ -47,12 +49,13 @@
     isDragging = false;
   }
 
+  // Отправка видео на сервер и обработка ответа
   async function handleSubmit() {
     if (!videoFile) return;
 
     step = 'processing';
 
-    // Keep lens moving during the entire request
+    // Анимация перемещения лупы во время запроса
     moveTimer = setInterval(() => {
         lensX = Math.floor(Math.random() * 80) + 10;
         lensY = Math.floor(Math.random() * 70) + 15;
@@ -86,7 +89,7 @@
         console.error('Recognition API error:', err);
         step = 'error';
     } finally {
-        // Always stop the lens animation when done
+        // Остановка анимации при завершении запроса
         if (moveTimer) {
             clearInterval(moveTimer);
             moveTimer = null;
@@ -94,6 +97,7 @@
     }
   }
 
+  // Экспорт таймкодов
   function downloadTimestamps() {
     const content = timestamps.join('\n');
     const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
@@ -107,6 +111,7 @@
     URL.revokeObjectURL(url);
   }
 
+  // Сброс состояния приложения
   function resetFlow() {
     if (processingTimer) clearTimeout(processingTimer);
     if (moveTimer) clearInterval(moveTimer);
@@ -119,6 +124,7 @@
     step = 'upload';
   }
 
+  // Очистка ресурсов при размонтировании компонента
   $effect(() => {
     return () => {
       if (processingTimer) clearTimeout(processingTimer);
@@ -127,6 +133,7 @@
     };
   });
 </script>
+
 
 <div class="app">
   <header class="logo">
@@ -180,7 +187,9 @@
       <div class="card processing-card">
         <div class="scene">
           <img src="leopard.png" alt="Ищем снежного барса" class="leopard-img" />
-          <div class="magnifier" style="left: {lensX}%; top: {lensY}%;">🔍</div>
+          <div class="magnifier" style="left: {lensX}%; top: {lensY}%;">
+            <img src="magnifier.png" alt="🔍" />
+          </div>
         </div>
       </div>
       <div class="actions">
@@ -213,6 +222,7 @@
     {/if}
   </main>
 </div>
+
 
 <style>
   :global(body) {
@@ -305,11 +315,21 @@
   }
   .magnifier {
     position: absolute;
-    font-size: 42px;
+    width: 56px;
+    height: 56px;
     transition: left 0.6s cubic-bezier(0.25, 1, 0.5, 1), top 0.6s cubic-bezier(0.25, 1, 0.5, 1);
     transform: translate(-50%, -50%);
     pointer-events: none;
     z-index: 2;
+  }
+  .magnifier img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    font-size: 40px;
+    line-height: 56px;
+    text-align: center;
   }
 
   .result-title { margin: 0 0 16px; font-size: 18px; font-weight: 600; text-align: center; }
