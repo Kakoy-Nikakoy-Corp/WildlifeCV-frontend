@@ -188,7 +188,7 @@
         <div class="scene">
           <img src="leopard.png" alt="Ищем снежного барса" class="leopard-img" />
           <div class="magnifier" style="left: {lensX}%; top: {lensY}%;">
-            <img src="magnifier.png" alt="🔍" />
+            <img src="magnifier.png" alt="" />
           </div>
         </div>
       </div>
@@ -225,68 +225,94 @@
 
 
 <style>
-  :global(body) {
+  :global(html, body) {
+    height: 100%;
     margin: 0;
+    overflow-x: hidden;
+  }
+
+  :global(body) {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background: #F5F7FA;
     color: #1A1A1A;
+    overflow: hidden;
   }
 
   .app {
     min-height: 100vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 24px;
+    justify-content: center;
+    padding: 10px 14px 16px;
+    overflow: hidden;
   }
 
   .logo {
-    width: 100%;
-    max-width: 800px;
-    margin-bottom: 24px;
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    width: auto;
+    max-width: calc(100% - 32px);
+    margin: 0;
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    z-index: 20;
+  }
+  @media (max-width: 640px) {
+    .logo {
+      top: 12px;
+      left: 12px;
+    }
   }
 
   .logo-img {
-    height: 32px;
+    height: 88px;
     width: auto;
     display: block;
   }
 
   .logo-text {
     font-weight: 700;
-    font-size: 22px;
+    font-size: 40px;
     color: #21A038;
     letter-spacing: -0.5px;
   }
 
   .container {
-    width: 100%;
-    max-width: 560px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .card {
-    background: #fff;
-    border: 1px solid #E2E8F0;
-    border-radius: 24px;
-    padding: 32px;
+    width: min(96%, 1040px);
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 240px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    gap: 18px;
+    min-height: auto;
+    max-height: 90vh;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 1040px;
+    background: #fff;
+    border: 1px solid #EEF3F8;
+    border-radius: 28px;
+    padding: 64px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 520px;
+    box-shadow: 0 14px 35px rgba(15, 23, 42, 0.10);
   }
 
   .upload-card {
-    border: 2px dashed #CBD5E1;
-    transition: border-color 0.2s, background 0.2s;
+    border: 1px solid #DCE4EB;
+    transition: border-color 0.2s, background 0.2s, transform 0.2s;
     cursor: pointer;
+    border-radius: 28px;
   }
   .upload-card.active {
     border-color: #21A038;
@@ -294,10 +320,10 @@
   }
 
   .upload-area { text-align: center; }
-  .upload-text { display: block; font-size: 16px; margin-bottom: 8px; color: #475569; }
-  .upload-or { display: block; margin: 8px 0 16px; color: #94A3B8; font-size: 14px; }
+  .upload-text { display: block; font-size: clamp(15px, 2.2vw, 19px); margin-bottom: 10px; color: #475569; }
+  .upload-or { display: block; margin: 10px 0 18px; color: #94A3B8; font-size: clamp(13px, 1.7vw, 17px); }
 
-  .video-preview { width: 100%; border-radius: 16px; background: #000; max-height: 320px; }
+  .video-preview { width: 100%; border-radius: 16px; background: #000; max-height: 38vh; min-height: 220px; }
 
   .scene {
     position: relative;
@@ -309,14 +335,14 @@
   }
   .leopard-img {
     max-width: 100%;
-    max-height: 200px;
+    max-height: 260px;
     object-fit: contain;
     filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
   }
   .magnifier {
     position: absolute;
-    width: 56px;
-    height: 56px;
+    width: 62px;
+    height: 62px;
     transition: left 0.6s cubic-bezier(0.25, 1, 0.5, 1), top 0.6s cubic-bezier(0.25, 1, 0.5, 1);
     transform: translate(-50%, -50%);
     pointer-events: none;
@@ -327,31 +353,42 @@
     height: 100%;
     object-fit: contain;
     display: block;
-    font-size: 40px;
-    line-height: 56px;
+    font-size: 44px;
+    line-height: 62px;
     text-align: center;
   }
 
-  .result-title { margin: 0 0 16px; font-size: 18px; font-weight: 600; text-align: center; }
+  .result-title { margin: 0 0 14px; font-size: clamp(18px, 2.2vw, 24px); font-weight: 600; text-align: center; }
   .timestamps-list {
-    list-style: none; padding: 0; margin: 0; width: 100%; max-height: 180px; overflow-y: auto;
-    text-align: center; font-family: 'Courier New', monospace; font-size: 14px; color: #334155;
-    line-height: 1.8; background: #F8FAFC; padding: 16px; border-radius: 12px;
+    list-style: none; padding: 0; margin: 0; width: 100%; max-height: 150px; overflow-y: auto;
+    text-align: center; font-family: 'Courier New', monospace; font-size: clamp(13px, 1.7vw, 17px); color: #334155;
+    line-height: 1.75; background: #F8FAFC; padding: 14px; border-radius: 12px;
   }
-  .error-text { margin: 0; font-size: 18px; font-weight: 500; text-align: center; color: #475569; }
+  .error-text { margin: 0; font-size: clamp(18px, 2.4vw, 22px); font-weight: 500; text-align: center; color: #475569; }
 
-  .actions { display: flex; justify-content: center; gap: 12px; }
-  .actions.row { flex-direction: column; }
-  @media (min-width: 640px) { .actions.row { flex-direction: row; } }
-
+  .actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+  }
   .btn {
-    padding: 12px 24px; border-radius: 12px; border: none; background: #E2E8F0; color: #475569;
-    font-size: 15px; font-weight: 500; cursor: pointer; transition: all 0.2s; white-space: nowrap;
+    padding: 16px 30px; border-radius: 16px; border: none; background: #E2E8F0; color: #475569;
+    font-size: clamp(15px, 2vw, 19px); font-weight: 700; cursor: pointer; transition: all 0.2s; white-space: nowrap;
   }
   .btn:hover:not(.btn:disabled) { background: #CBD5E1; transform: translateY(-1px); }
   .btn.primary { background: #21A038; color: #fff; }
-  .btn.primary:hover:not(.btn:disabled) { background: #1E8E32; box-shadow: 0 4px 12px rgba(33, 160, 56, 0.3); }
+  .btn.primary:hover:not(.btn:disabled) { background: #1E8E32; box-shadow: 0 5px 14px rgba(33, 160, 56, 0.35); }
   .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .actions.row {
+    flex-direction: column;
+  }
+  @media (min-width: 640px) {
+    .actions.row {
+      flex-direction: row;
+    }
+  }
 
   .timestamps-list::-webkit-scrollbar { width: 6px; }
   .timestamps-list::-webkit-scrollbar-track { background: #F1F5F9; border-radius: 3px; }
