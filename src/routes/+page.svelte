@@ -91,15 +91,15 @@ async function handleSubmit() {
 
   // Определение эндпоинта в зависимости от типа файла
   let endpoint = '';
-  if (fileType === 'video') endpoint = '/recognise/video';
-  else if (fileType === 'image') endpoint = '/recognise/image';
-  else endpoint = '/recognise/multi-image';
+  if (fileType === 'video') endpoint = '/recognise/video/';
+  else if (fileType === 'image') endpoint = '/recognise/image/';
+  else endpoint = '/recognise/multi-image/';
 
   const formData = new FormData();
-  formData.append('file', selectedFile);
+  formData.append('video', selectedFile);
 
   try {
-    const response = await fetch(`https://api.irbis.wild1.net/recognise`, {
+    const response = await fetch(`https://api.irbis.wild1.net` + endpoint, {
       method: 'POST',
       headers: { 'accept': 'application/json' },
       body: formData
@@ -111,7 +111,7 @@ async function handleSubmit() {
     const data = await response.json();
 
     // Логика маршрутизации по экранам
-    if (data.status === 'success') {
+    if (data.status === 'OK') {
       if (fileType === 'video') {
         timestamps = data.data.timestrings || [];
         processedVideoUrl = data.data.link;
