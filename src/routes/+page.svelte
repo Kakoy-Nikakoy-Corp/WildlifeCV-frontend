@@ -60,15 +60,15 @@
 
       if (data.status === 'IRBIS_FOUND') {
         if (fileType === 'video') {
-          timestamps = data.data.timestrings || [];
-          processedVideoUrl = data.data.link;
+          timestamps = data.timestrings || [];
+          processedVideoUrl = data.link;
           step = 'success_video';
         } else if (fileType === 'image') {
           processedImageUrl = data.link;
           step = 'success_image';
         } else {
           processedArchiveUrl = data.archive_link;
-          processedImages = [data.image_1, data.image_2, data.image_3, data.image_4];
+          processedImages = data.collage_images || [];
           step = 'success_archive';
         }
       } else if (data.status === 'NO_IRBIS_FOUND') {
