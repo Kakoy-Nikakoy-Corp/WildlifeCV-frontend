@@ -27,6 +27,7 @@
 {#if step === 'success_video'}
   <div class="card result-card">
     <h2 class="result-title">Барс найден</h2>
+    <!-- svelte-ignore a11y_media_has_caption -->
     <video src={processedVideoUrl} controls class="media-preview video-preview"></video>
   </div>
   <div class="actions row">

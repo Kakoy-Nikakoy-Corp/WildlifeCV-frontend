@@ -14,6 +14,7 @@
 
 <div class="card preview-card">
   {#if fileType === 'video'}
+    <!-- svelte-ignore a11y_media_has_caption -->
     <video src={previewUrl} controls class="media-preview video-preview"></video>
   {:else if fileType === 'image'}
     <img src={previewUrl} alt="Предпросмотр" class="media-preview image-preview" />
