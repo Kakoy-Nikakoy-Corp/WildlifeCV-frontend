@@ -3,7 +3,14 @@
   import PreviewCard from '../lib/components/PreviewCard.svelte';
   import ProcessingCard from '../lib/components/ProcessingCard.svelte';
   import ResultCard from '../lib/components/ResultCard.svelte';
-  import '../lib/styles/flow.css';
+
+  import '../lib/styles/global.css';
+  import '../lib/styles/cards.css';
+  import '../lib/styles/buttons.css';
+  import '../lib/styles/upload-card.css';
+  import '../lib/styles/preview-card.css';
+  import '../lib/styles/processing-card.css';
+  import '../lib/styles/result-card.css';
 
   import { validateFile } from '../lib/utils/fileUtils.js';
   import { recognizeFile } from '../lib/api/recognition.js';
