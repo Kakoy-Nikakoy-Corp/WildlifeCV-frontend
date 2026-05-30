@@ -58,7 +58,7 @@
     try {
       const data = await recognizeFile(fileType, selectedFile);
 
-      if (data.status === 'OK') {
+      if (data.status === 'IRBIS_FOUND') {
         if (fileType === 'video') {
           timestamps = data.data.timestrings || [];
           processedVideoUrl = data.data.link;
@@ -71,7 +71,7 @@
           processedImages = [data.image_1, data.image_2, data.image_3, data.image_4];
           step = 'success_archive';
         }
-      } else if (data.status === 'not_found') {
+      } else if (data.status === 'NO_IRBIS_FOUND') {
         step = 'not_found';
       } else {
         errorMessage = data.detail || 'Произошла неизвестная ошибка обработки';

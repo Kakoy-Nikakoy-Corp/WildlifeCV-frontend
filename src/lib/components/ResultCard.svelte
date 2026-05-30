@@ -3,7 +3,6 @@
 
   export let step;
   export let fileType;
-  export let timestamps = [];
   export let processedVideoUrl;
   export let processedImageUrl;
   export let processedArchiveUrl;
@@ -29,11 +28,6 @@
   <div class="card result-card">
     <h2 class="result-title">Барс найден</h2>
     <video src={processedVideoUrl} controls class="media-preview video-preview"></video>
-    <ul class="timestamps-list">
-      {#each timestamps as tc}
-        <li>{tc}</li>
-      {/each}
-    </ul>
   </div>
   <div class="actions row">
     <button class="btn primary" on:click={downloadTimestamps}>Скачать таймкоды</button>
