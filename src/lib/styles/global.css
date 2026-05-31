@@ -110,4 +110,5 @@
   gap: 12px; 
   min-height: auto;
   max-height: 90vh;
+  padding-top: calc(40px + 32px);
 }
