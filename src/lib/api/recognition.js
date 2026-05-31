@@ -8,7 +8,7 @@ export async function recognizeFile(fileType, selectedFile) {
   else endpoint = '/recognise/multi-image/';
 
   const formData = new FormData();
-  formData.append('video', selectedFile);
+  formData.append('file', selectedFile);
 
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
     method: 'POST',
