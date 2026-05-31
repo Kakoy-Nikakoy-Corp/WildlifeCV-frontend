@@ -15,6 +15,7 @@
 
 .upload-text { 
   display: block; 
+  font-family: 'Poppins', sans-serif !important;
   font-size: clamp(15px, 2.2vw, 19px); 
   margin-bottom: 10px; 
   color: #475569; 
@@ -22,6 +23,7 @@
 
 .upload-or { 
   display: block; 
+  font-family: 'Poppins', sans-serif !important;
   margin: 10px 0 18px; 
   color: #94A3B8; 
   font-size: clamp(13px, 1.7vw, 17px); 

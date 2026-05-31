@@ -4,6 +4,7 @@
   align-items: center; 
   gap: 16px; 
   width: 100%; 
+  margin-top: 28px;
 }
 
 .btn {
@@ -12,6 +13,7 @@
   border: none; 
   background: #E2E8F0; 
   color: #475569;
+  font-family: 'Poppins', sans-serif !important;
   font-size: clamp(15px, 2vw, 19px); 
   font-weight: 700; 
   cursor: pointer; 

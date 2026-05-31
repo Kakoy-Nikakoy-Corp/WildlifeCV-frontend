@@ -26,7 +26,6 @@
 
 {#if step === 'success_video'}
   <div class="card result-card">
-    <h2 class="result-title">Барс найден</h2>
     <!-- svelte-ignore a11y_media_has_caption -->
     <video src={processedVideoUrl} controls class="media-preview video-preview"></video>
   </div>
@@ -37,7 +36,6 @@
   </div>
 {:else if step === 'success_image'}
   <div class="card result-card">
-    <h2 class="result-title">Барс найден</h2>
     <img src={processedImageUrl} alt="Обработанное изображение" class="media-preview image-preview" />
   </div>
   <div class="actions row">
@@ -46,7 +44,6 @@
   </div>
 {:else if step === 'success_archive'}
   <div class="card result-card">
-    <h2 class="result-title">Барс найден в архиве</h2>
     <div class="collage-grid">
       {#each processedImages as src, i}
         <img src={src} alt="Кадр {i + 1}" class="collage-item" />

@@ -1,24 +1,25 @@
-.result-title { 
-  margin: 0 0 14px; 
-  font-size: clamp(18px, 2.2vw, 24px); 
-  font-weight: 600; 
-  text-align: center; 
+.result-title {
+  display: none;
 }
 
 .collage-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 10px;
   width: 100%;
-  max-width: 600px;
+  max-width: 720px;
+  height: 100%;
 }
 
 .collage-item {
   width: 100%;
-  aspect-ratio: 4/3;
+  aspect-ratio: 16/8;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 10px;
   background: #F1F5F9;
+  display: block;
+  margin: 0;
+  height: 100%;
 }
 
 .error-text { 
@@ -34,5 +35,5 @@
   font-size: clamp(14px, 1.8vw, 16px); 
   text-align: center; 
   color: #94A3B8; 
-  font-family: monospace; 
+  font-family: inherit;
 }
