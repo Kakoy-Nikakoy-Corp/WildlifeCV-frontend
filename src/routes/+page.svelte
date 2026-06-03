@@ -67,7 +67,7 @@
           processedImageUrl = data.link;
           step = 'success_image';
         } else {
-          processedArchiveUrl = data.archive_link;
+          processedArchiveUrl = data.link;
           processedImages = data.collage_images || [];
           step = 'success_archive';
         }
