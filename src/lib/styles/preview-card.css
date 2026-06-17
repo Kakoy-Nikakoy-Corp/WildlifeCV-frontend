@@ -36,3 +36,28 @@
   text-align: center; 
   word-break: break-all; 
 }
+
+@media (max-width: 640px) {
+  .archive-preview {
+    gap: 14px;
+    padding: 28px;
+    flex-grow: 1;
+    justify-content: center;
+    max-width: 100%;
+  }
+
+  .archive-name {
+    font-size: clamp(13px, 2.5vw, 16px);
+  }
+
+  .media-preview {
+    border-radius: 12px;
+    max-height: 70%;
+    max-width: 100%;
+  }
+
+  .video-preview,
+  .image-preview {
+    max-height: 70%;
+  }
+}
